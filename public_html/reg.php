@@ -7,15 +7,14 @@
 }
 	
  
-
 if(empty($_POST) === false){
       
 	    $name = mysqli_real_escape_string($conn,$_POST['name']);
 		$email = mysqli_real_escape_string($conn,$_POST['email']);
+		 $cat = mysqli_real_escape_string($conn,$_POST['cat']);
 		$roll = mysqli_real_escape_string($conn,$_POST['roll']);
 		$pass = mysqli_real_escape_string($conn,$_POST['pass']);
-		$mobile = mysqli_real_escape_string($conn,$_POST['mobile']);
-
+		$mobile =  mysqli_real_escape_string($conn,$_POST['mobile']);
 		//-----password hashing--------
 		
 		$hash = sha1($pass);
@@ -26,14 +25,12 @@ if(empty($_POST) === false){
 		//------creating random code-------
 		$a = rand(11111111,99999999);
 		$code = sha1($a);
-
 		
-		$sql = "INSERT into users(name, email, rollno, password, active, active_code, mobile, time) 
-				           VALUES('$name', '$email', '$roll', '$hash', 0, '$code', '$mobile', '$t')";
+		$sql = "INSERT into users(name, email,category ,rollno, password, active, active_code, mobile, time) 
+				           VALUES('$name', '$email','$cat', '$roll', '$hash', 0, '$code', '$mobile', '$t')";
 						   
 		$sql1 = "SELECT * from users where email = '$email'";
         $vemail = mysqli_query($conn,$sql1);
-
         $sql2 = "SELECT * from users where rollno = '$roll'";
         $vroll = mysqli_query($conn,$sql2);
 		
@@ -41,7 +38,6 @@ if(empty($_POST) === false){
 			
 			    echo "<script>alert('You are already registered.')</script>";
 		        echo "<script>location.href='reg.php'</script>";
-
 		          }else if(mysqli_num_rows($vroll) > 0){
 			
 			           echo "<script>alert('This ID is  already registered.')</script>";
@@ -62,7 +58,6 @@ if(empty($_POST) === false){
 						  
 						               echo "We couldn't signup at this time. Try again.";
 						              echo "<script>location.href='index.php'</script>";
-
             
 								}else{
 		                       if(mysqli_query($conn,$sql)){
@@ -77,13 +72,9 @@ if(empty($_POST) === false){
  }}
  else{		
 	?>
-
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,7 +82,6 @@ if(empty($_POST) === false){
 <?php    
   require 'includes/header.php'; 
 ?>
-
     <body>
 				<?php include 'includes/top_menu.php'?>
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -104,7 +94,6 @@ if(empty($_POST) === false){
 				</div>
 			</div>
 		</nav>
-
 				<!-- Register -->
         <div class="block-3-container section-container register-container">
 	        <div class="container">
@@ -134,6 +123,13 @@ if(empty($_POST) === false){
 									</div>
 									<div class="form-group">
 										<input type="text" name="mobile" id="username" tabindex="1" class="form-control" placeholder="Mobile Number" value="" maxlength=10>
+									</div>
+									<div class="form-group">
+										<table> <tr rowspan=2><td >Category:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									 <td cellspacing="10" align="center">
+   										<input type="radio" name="cat" value="Employer" >Employer &nbsp;&nbsp;&nbsp;&nbsp;</td><td colspan="2" align="center">
+                                <input type="radio" name="cat" value="Worker">Worker</td> </tr></table>
+										
 									</div>
 									<div class="form-group">
 										<input type="text" name="roll" id="username" tabindex="1" class="form-control" placeholder="Identity Number" value="">

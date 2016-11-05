@@ -1,6 +1,8 @@
 <?php include'db/conn.php';
+
 if(!isset($_SESSION['roll'])){
     header('Location:login.php');
+
 }  ?>
 
 <!DOCTYPE html>
@@ -30,6 +32,7 @@ if(!isset($_SESSION['roll'])){
 			</div>
 		</nav>
 		
+
 		
 		
 		
@@ -64,15 +67,12 @@ if(!isset($_SESSION['roll'])){
 </select></TD>
         </TR>
         <TR>
-            <TD>No.of Days:</TD>
-            <TD><input type=text name=txtnoday></TD>
-        </TR>
-		<TR>
-            <TD>No.of workers:</TD>
-            <TD><input type=text name=txtworker></TD>
+            <TD>Will you go for far distance:</TD>
+            <TD><input type="radio" name="cat" value="yes">Yes
+   <input type="radio" name="cat" value="no">No</TD>
         </TR>
         <TR>
-            <TD  align=center><input type=submit name=s1 value="submit">
+            <TD  align=center><input type=submit name=s1 value="Apply">
 			<input type=reset name=s2 value="Reset"></TD>
             
         </TR>
