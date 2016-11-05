@@ -53,7 +53,7 @@
 				         echo("<script>location.href='login.php';</script>");
                     
 	                      }else if(!$active){
-                                  echo "<script>alert('Please activate your account. Check your inbox of your email.')</script>";
+                                  echo "<script>alert('Please activate your account. Check your inbox of the registered email.')</script>";
                                   echo "<script>location.href='login.php'</script>";
                                  
                                  }
